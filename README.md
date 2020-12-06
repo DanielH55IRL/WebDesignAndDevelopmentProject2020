@@ -1,2 +1,6 @@
-# WebDevelopmentProject2020
-WebDevelopmentProject2020 - IT Sligo Web Development Project Semester 1 2020, S00199340.
+<h1>Web Design and Development - Project Semester 1 2020</h1>
+<h2>Project Topic:</h2>
+<p>Computer Store</p>
+<h3>Author:</h3>
+<p>Daniel Halpin, S00199340</p>
+<p></p>
