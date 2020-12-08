@@ -2,7 +2,7 @@
       
     // set the checkout figure
     if (localStorage.getItem('checkout') == null) {  
-        localStorage.setItem('checkout',0);
+        localStorage.setItem('checkout',1);
     }
     $("#checkout" ).html(localStorage.getItem('checkout'));
 
@@ -39,7 +39,7 @@
     $('form[name="login"]' ).submit(function( event ) {
         var email=$('input[name="email"]').val();
         var password =$('input[name="password"]').val();
-        if (email=="wmitty@email.com" && password=="password1")  {   
+        if (email=="danielhalpin@mail.itsligo.ie" && password=="password1")  {   
             // successful login, user redirected to shop.html
             localStorage.setItem('loggedIn',1);    
             window.location.href = "shop.html";
@@ -56,7 +56,7 @@
     // this code is run everytime this js file is loaded.   
     if (localStorage.getItem('userdetails') === null) {  
         // if userdetails is null, that means it has not been loaded before. we not initialise userdetails object
-        var userDetails = {firstName:"Walter", lastName:"Mitty", dob:"1990-12-01",address1:"Buenos Ayres Drive", address2:"Strandhill", address3:"Co. Sligo"};
+        var userDetails = {firstName:"Daniel", lastName:"Halpin", dob:"2000-10-17",address1:"IT Sligo", address2:"Ash Lane", address3:"Co. Sligo"};
         // now we store the userdetails object as a localstorage object but localstore only stores text and userdetails is a javascript object
         // we convert a javascript object ot a string using JSON.stringify - we are being expedient!
         localStorage.setItem('userdetails',JSON.stringify(userDetails));
@@ -68,6 +68,7 @@
     // we only run this code if an id of udetails is on the html page we are currently on - makes the code a little bit more efficient
     // if the length > 0 it means we are on the right page - and we can populdate the form fields!!!
     if ($('#udetails').length > 0) {
+        console.log(userDetails);
         $('input[name="firstname"]').val(userDetails.firstName);         
         $('input[name="lastname"]').val(userDetails.lastName);
         $('input[name="dob"]').val(userDetails.dob);
@@ -75,6 +76,7 @@
         $('input[name="address2"]').val(userDetails.address2);
         $('input[name="address3"]').val(userDetails.address3);
     }
+}); 
       
 
 
@@ -113,4 +115,54 @@
         localStorage.setItem('checkout',total);
         $("#checkout" ).html(total );
     });
+
+
+
+
+
+
+$(".removefromcart").click(function(){
+    var total=localStorage.getItem('checkout');
+    total--;
+    localStorage.setItem('checkout',total);
+    $("#checkout" ).html(total );
+});
+
+
+
+
+
+
+//contact.html 
+if (localStorage.getItem('contactus') === null) {  
+  
+    var contactUs = {name:"Daniel Halpin", email:"s00199340@mail.itsligo.ie", subject:"RTX 3000 Stock", message:"Hi, wondering the availibility of the RTX 3000 Series GPU's. Thanks."};
+    
+    localStorage.setItem('contactus',JSON.stringify(contactUs));
+} else {
+   
+    contactUs=JSON.parse(localStorage.getItem('contactus'));
+}
+
+
+if ($('#cntctus').length > 0) {
+    console.log(contactUs);
+    $('input[name="name"]').val(contactUs.name);         
+    $('input[name="email"]').val(contactUs.email);
+    $('input[name="subject"]').val(contactUs.subject);
+    $('input[name="message"]').val(contactUs.message);
+}
+  
+
+
+
+$('form[name="contactus"]' ).submit(function( event ) {
+   
+    contactUs.name=$('input[name="name"]').val();
+    contactUs.email=$('input[name="email"]').val();
+    contactUs.subject=$('input[name="subject"]').val(); 
+    contactUs.message=$('input[name="message"]').val();   
+  
+    localStorage.setItem('contactus',JSON.stringify(contactUs));
+    return false;
 }); 
